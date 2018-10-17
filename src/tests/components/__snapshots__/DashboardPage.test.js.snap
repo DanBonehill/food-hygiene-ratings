@@ -14,8 +14,10 @@ exports[`ExpenseDashboardPage snapshot should render correctly 1`] = `
     onChange={[Function]}
     options={Array []}
   />
+  <div />
   <HygieneScores
     hygieneScores={Array []}
+    selectedAuthority=""
   />
 </div>
 `;

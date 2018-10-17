@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HygieneScoresTable snapshot should render correctly 1`] = `
+<div>
+  <tr>
+    <td>
+      Pass
+    </td>
+    <td>
+      60
+      %
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Improvement Required
+    </td>
+    <td>
+      40
+      %
+    </td>
+  </tr>
+</div>
+`;
