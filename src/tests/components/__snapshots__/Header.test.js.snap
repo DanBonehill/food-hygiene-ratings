@@ -16,15 +16,9 @@ exports[`Header snapshot should render correctly 1`] = `
         to="/dashboard"
       >
         <h1>
-          Boilerplate
+          Food Hygiene Ratings
         </h1>
       </Link>
-      <button
-        className="button button--link"
-        onClick={[Function]}
-      >
-        Logout
-      </button>
     </div>
   </div>
 </header>
