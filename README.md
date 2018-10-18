@@ -1,4 +1,11 @@
 # React.js Coding Assignment
+
+### Commands
+Build & run: `yarn run dev-server`
+
+Run tests: `yarn run test`
+
+### Requirements
 The aim of this exercise is to assess your problem-solving approach, your ability to turn your solution into working code and the way in which you structure your code.
 
 You are required to: 
