@@ -1,8 +1,9 @@
 import React from "react";
-import Select from 'react-select';
 import axios from 'axios';
+import Select from 'react-select';
 
 import HygieneScores from "./HygieneScores";
+import Loader from './Loader';
 
 export class DashboardPage extends React.Component {
     state = {
@@ -15,17 +16,19 @@ export class DashboardPage extends React.Component {
         axios.get("http://api.ratings.food.gov.uk/authorities/basic/", {
             headers: {'x-api-version': 2}
         }).then((res) => {
-            const authorities = res.data.authorities;
             const options = [];
-            authorities.forEach((authority) => {
+
+            res.data.authorities.forEach((authority) => {
                 options.push({value: authority.LocalAuthorityId, label: authority.Name})
             });
+
             this.setState({options})
         })
     }
     handleChange = (selectedAuthority) => {
         const authorityId = selectedAuthority.value;
         this.setState({selectedAuthority: selectedAuthority.label, loading: true});
+
         axios.get("http://api.ratings.food.gov.uk/establishments", {
             headers: {'x-api-version': 2},
             params: {
@@ -34,11 +37,12 @@ export class DashboardPage extends React.Component {
                 "pageSize": 10000
             }
         }).then((res) => {
-            const establishments = res.data.establishments;
             const hygieneScores = [];
-            establishments.forEach((establishment) => {
+
+            res.data.establishments.forEach((establishment) => {
                 hygieneScores.push(establishment.RatingValue)
             });
+
             this.setState({hygieneScores, loading: false})
         })
     };
@@ -50,16 +54,14 @@ export class DashboardPage extends React.Component {
                     options={this.state.options}
                     onChange={this.handleChange}
                 />
-                {
-                    this.state.loading ? (
-                        <div>
-                            <img src="/images/loader.gif" />
-                        </div>
-                    ) : (
-                        <div></div>
-                    )
+                {this.state.loading &&
+                    <Loader/>
                 }
-                <HygieneScores hygieneScores={this.state.hygieneScores} selectedAuthority={this.state.selectedAuthority}/>
+                <HygieneScores
+                    hygieneScores={this.state.hygieneScores}
+                    selectedAuthority={this.state.selectedAuthority}
+                    loading={this.state.loading}
+                />
             </div>
         )
     }

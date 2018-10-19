@@ -2,32 +2,19 @@ import React from 'react';
 import HygieneScoresTable from "./HygieneScoresTable";
 
 // Move this somewhere else
-const calculateScores = (hygieneScores) => {
-    const scorePass = hygieneScores.filter((score) => score === 'Pass').length;
-    const scoreExempt = hygieneScores.filter((score) => score === 'Exempt').length;
-    const scoreImprovement = hygieneScores.filter((score) => score === 'Improvement Required').length;
-    const scoreFive = hygieneScores.filter((score) => score === "5").length;
-    const scoreFour = hygieneScores.filter((score) => score === "4").length;
-    const scoreThree = hygieneScores.filter((score) => score === "3").length;
-    const scoreTwo = hygieneScores.filter((score) => score === "2").length;
-    const scoreOne = hygieneScores.filter((score) => score === "1").length;
-    const scoreZero = hygieneScores.filter((score) => score === "0").length;
+const calculateScores = (hygieneScores) => ({
+    "pass": hygieneScores.filter((score) => score === 'Pass').length,
+    "exempt": hygieneScores.filter((score) => score === 'Exempt').length,
+    "improvement": hygieneScores.filter((score) => score === 'Improvement Required').length,
+    "five": hygieneScores.filter((score) => score === "5").length,
+    "four": hygieneScores.filter((score) => score === "4").length,
+    "three": hygieneScores.filter((score) => score === "3").length,
+    "two": hygieneScores.filter((score) => score === "2").length,
+    "one": hygieneScores.filter((score) => score === "1").length,
+    "zero": hygieneScores.filter((score) => score === "0").length
+});
 
-    return {
-        "pass": scorePass,
-        "exempt": scoreExempt,
-        "improvement": scoreImprovement,
-        "five": scoreFive,
-        "four": scoreFour,
-        "three": scoreThree,
-        "two": scoreTwo,
-        "one": scoreOne,
-        "zero": scoreZero
-    }
-};
-
-// Make class component with own state?
-const HygieneScores = ({hygieneScores, selectedAuthority}) => {
+const HygieneScores = ({hygieneScores, selectedAuthority, loading}) => {
 
     // How to better handle this... Redux?
     const scoresArray = [
@@ -71,14 +58,16 @@ const HygieneScores = ({hygieneScores, selectedAuthority}) => {
 
     return (
         <div>
-            <h1>{selectedAuthority}</h1>
-            <table>
-                <tr>
-                    <th>Rating</th>
-                    <th>Percentage</th>
-                </tr>
-                <HygieneScoresTable scores={scoresArray} totalScoresCount={hygieneScores.length}/>
-            </table>
+            {!loading &&
+                <div>
+                    <h1>{selectedAuthority}</h1>
+                    <table>
+                        {selectedAuthority &&
+                        <HygieneScoresTable scores={scoresArray} totalScoresCount={hygieneScores.length}/>
+                        }
+                    </table>
+                </div>
+            }
         </div>
     )
 };
