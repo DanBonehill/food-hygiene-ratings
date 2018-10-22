@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DashboardPage snapshot should render correctly 1`] = `
+<div
+  className="content-container"
+>
+  <h3>
+    Select an authority
+  </h3>
+  <StateManager
+    defaultInputValue=""
+    defaultMenuIsOpen={false}
+    defaultValue={null}
+    onChange={[Function]}
+    options={Array []}
+  />
+  <HygieneScores
+    hygieneScores={Array []}
+    loading={false}
+    selectedAuthority=""
+  />
+</div>
+`;
+
 exports[`ExpenseDashboardPage snapshot should render correctly 1`] = `
 <div
   className="content-container"
@@ -14,9 +36,9 @@ exports[`ExpenseDashboardPage snapshot should render correctly 1`] = `
     onChange={[Function]}
     options={Array []}
   />
-  <div />
   <HygieneScores
     hygieneScores={Array []}
+    loading={false}
     selectedAuthority=""
   />
 </div>

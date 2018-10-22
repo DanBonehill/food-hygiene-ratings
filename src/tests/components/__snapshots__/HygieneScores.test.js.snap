@@ -2,61 +2,55 @@
 
 exports[`HygieneScoresTable snapshot should render correctly 1`] = `
 <div>
-  <h1>
-    Coventry
-  </h1>
-  <table>
-    <tr>
-      <th>
-        Rating
-      </th>
-      <th>
-        Percentage
-      </th>
-    </tr>
-    <HygieneScoresTable
-      scores={
-        Array [
-          Object {
-            "title": "Pass",
-            "value": 3,
-          },
-          Object {
-            "title": "Improvement Required",
-            "value": 1,
-          },
-          Object {
-            "title": "Five",
-            "value": 0,
-          },
-          Object {
-            "title": "Four",
-            "value": 0,
-          },
-          Object {
-            "title": "Three",
-            "value": 0,
-          },
-          Object {
-            "title": "Two",
-            "value": 0,
-          },
-          Object {
-            "title": "One",
-            "value": 0,
-          },
-          Object {
-            "title": "Zero",
-            "value": 0,
-          },
-          Object {
-            "title": "Exempt",
-            "value": 0,
-          },
-        ]
-      }
-      totalScoresCount={4}
-    />
-  </table>
+  <div>
+    <h1>
+      Coventry
+    </h1>
+    <table>
+      <HygieneScoresTable
+        scores={
+          Array [
+            Object {
+              "title": "Pass",
+              "value": 3,
+            },
+            Object {
+              "title": "Improvement Required",
+              "value": 1,
+            },
+            Object {
+              "title": "Five",
+              "value": 0,
+            },
+            Object {
+              "title": "Four",
+              "value": 0,
+            },
+            Object {
+              "title": "Three",
+              "value": 0,
+            },
+            Object {
+              "title": "Two",
+              "value": 0,
+            },
+            Object {
+              "title": "One",
+              "value": 0,
+            },
+            Object {
+              "title": "Zero",
+              "value": 0,
+            },
+            Object {
+              "title": "Exempt",
+              "value": 0,
+            },
+          ]
+        }
+        totalScoresCount={4}
+      />
+    </table>
+  </div>
 </div>
 `;

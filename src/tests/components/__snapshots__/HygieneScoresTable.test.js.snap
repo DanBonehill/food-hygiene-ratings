@@ -3,6 +3,14 @@
 exports[`HygieneScoresTable snapshot should render correctly 1`] = `
 <div>
   <tr>
+    <th>
+      Rating
+    </th>
+    <th>
+      Percentage
+    </th>
+  </tr>
+  <tr>
     <td>
       Pass
     </td>
