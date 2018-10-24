@@ -1,7 +1,9 @@
 import React from "react";
 import axios from 'axios';
+import {connect} from 'react-redux';
 import Select from 'react-select';
 
+import {addAuthorities} from '../actions/authorities';
 import HygieneScores from "./HygieneScores";
 import Loader from './Loader';
 
@@ -22,7 +24,9 @@ export class DashboardPage extends React.Component {
                 options.push({value: authority.LocalAuthorityId, label: authority.Name})
             });
 
-            this.setState({options})
+            this.props.addAuthorities(options);
+        }).catch((err) => {
+            console.log(err)
         })
     }
     handleChange = (selectedAuthority) => {
@@ -51,7 +55,7 @@ export class DashboardPage extends React.Component {
             <div className="content-container">
                 <h3>Select an authority</h3>
                 <Select
-                    options={this.state.options}
+                    options={this.props.authorities}
                     onChange={this.handleChange}
                 />
                 {this.state.loading &&
@@ -66,5 +70,12 @@ export class DashboardPage extends React.Component {
         )
     }
 }
+const mapStateToProps = (state) => ({
+    authorities: state.authorities
+});
 
-export default DashboardPage
+const mapDispatchToProps = (dispatch) => ({
+    addAuthorities: (authorities) => dispatch(addAuthorities(authorities))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)
