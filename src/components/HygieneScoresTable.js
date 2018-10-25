@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 const HygieneScoresTable = ({scores, totalScoresCount}) => (
     <div>
@@ -17,4 +18,9 @@ const HygieneScoresTable = ({scores, totalScoresCount}) => (
     </div>
 );
 
-export default HygieneScoresTable
+const mapStateToProps = (state) => ({
+    scores: state.hygieneScores.calculatedScores,
+    totalScoresCount: state.hygieneScores.allScores.length
+});
+
+export default connect(mapStateToProps)(HygieneScoresTable)
