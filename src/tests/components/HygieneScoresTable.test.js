@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import HygieneScoresTable from '../../components/HygieneScoresTable';
+import {HygieneScoresTable} from '../../components/HygieneScoresTable';
 import scores from '../fixtures/scores';
 
 describe('HygieneScoresTable snapshot', () => {

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import HygieneScoresTable from "./HygieneScoresTable";
 
-const HygieneScores = ({selectedAuthority, loading}) => {
+export const HygieneScores = ({selectedAuthority, loading}) => {
     return (
         <div>
             {!loading &&

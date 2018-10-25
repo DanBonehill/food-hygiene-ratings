@@ -1,56 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HygieneScoresTable snapshot should render correctly 1`] = `
+exports[`HygieneScoresTable snapshot should render correctly 1`] = `<div />`;
+
+exports[`HygieneScoresTable snapshot should render correctly when loading false 1`] = `
 <div>
   <div>
     <h1>
       Coventry
     </h1>
     <table>
-      <HygieneScoresTable
-        scores={
-          Array [
-            Object {
-              "title": "Pass",
-              "value": 3,
-            },
-            Object {
-              "title": "Improvement Required",
-              "value": 1,
-            },
-            Object {
-              "title": "Five",
-              "value": 0,
-            },
-            Object {
-              "title": "Four",
-              "value": 0,
-            },
-            Object {
-              "title": "Three",
-              "value": 0,
-            },
-            Object {
-              "title": "Two",
-              "value": 0,
-            },
-            Object {
-              "title": "One",
-              "value": 0,
-            },
-            Object {
-              "title": "Zero",
-              "value": 0,
-            },
-            Object {
-              "title": "Exempt",
-              "value": 0,
-            },
-          ]
-        }
-        totalScoresCount={4}
-      />
+      <Connect(HygieneScoresTable) />
     </table>
   </div>
 </div>
 `;
+
+exports[`HygieneScoresTable snapshot should render correctly when loading true 1`] = `<div />`;

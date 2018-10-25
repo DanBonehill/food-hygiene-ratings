@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const HygieneScoresTable = ({scores, totalScoresCount}) => (
+export const HygieneScoresTable = ({scores, totalScoresCount}) => (
     <div>
         <tr>
             <th>Rating</th>
