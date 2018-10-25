@@ -3,35 +3,35 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import Select from 'react-select';
 
-import {addAuthorities} from '../actions/authorities';
+import {addAuthorities, setSelectedAuthority} from '../actions/authorities';
 import HygieneScores from "./HygieneScores";
 import Loader from './Loader';
 
 export class DashboardPage extends React.Component {
     state = {
-        options: [],
         hygieneScores: [],
-        selectedAuthority: '',
         loading: false
     };
     componentDidMount() {
         axios.get("http://api.ratings.food.gov.uk/authorities/basic/", {
             headers: {'x-api-version': 2}
         }).then((res) => {
-            const options = [];
+            const authorities = [];
 
             res.data.authorities.forEach((authority) => {
-                options.push({value: authority.LocalAuthorityId, label: authority.Name})
+                authorities.push({value: authority.LocalAuthorityId, label: authority.Name})
             });
 
-            this.props.addAuthorities(options);
+            this.props.addAuthorities(authorities);
         }).catch((err) => {
             console.log(err)
         })
     }
     handleChange = (selectedAuthority) => {
+        this.props.setSelectedAuthority(selectedAuthority.label);
+        this.setState({loading: true});
+
         const authorityId = selectedAuthority.value;
-        this.setState({selectedAuthority: selectedAuthority.label, loading: true});
 
         axios.get("http://api.ratings.food.gov.uk/establishments", {
             headers: {'x-api-version': 2},
@@ -71,11 +71,12 @@ export class DashboardPage extends React.Component {
     }
 }
 const mapStateToProps = (state) => ({
-    authorities: state.authorities
+    authorities: state.authorities.allAuthorities
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addAuthorities: (authorities) => dispatch(addAuthorities(authorities))
+    addAuthorities: (authorities) => dispatch(addAuthorities(authorities)),
+    setSelectedAuthority: (selectedAuthority) => dispatch(setSelectedAuthority(selectedAuthority))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)
