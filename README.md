@@ -1,8 +1,8 @@
 # React.js Coding Assignment
 
 ### Commands
+Install dependencies: `yarn install`
 Build & run: `yarn run dev-server`
-
 Run tests: `yarn run test`
 
 ### Requirements
@@ -43,4 +43,3 @@ When I select that local authority then I should see a tabular breakdown as foll
 2. The FSA’s API is a simple RESTful API that returns JSON. Note that contrary to the API documentation in recent versions the pageSize and pageNumber parameter is not optional and must be supplied. 
 3. The code and design should meet the requirements, and should consider future extension or maintenance. 
 4. The code should be well-structured, commented, have error handling and include a suitable selection of tests. 
-
