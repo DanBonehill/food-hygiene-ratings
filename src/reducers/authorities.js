@@ -1,6 +1,7 @@
 const defaultState = {
     allAuthorities: [],
-    selectedAuthority: ''
+    selectedAuthority: '',
+    loading: false
 };
 
 export default (state = defaultState, action) => {
@@ -16,6 +17,11 @@ export default (state = defaultState, action) => {
             return {
                 ...state,
                 selectedAuthority: action.selectedAuthority
+            };
+        case "SET_LOADING":
+            return {
+                ...state,
+                loading: action.loading
             };
         default:
             return state

@@ -3,15 +3,12 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import Select from 'react-select';
 
-import {addAuthorities, setSelectedAuthority} from '../actions/authorities';
+import {addAuthorities, setSelectedAuthority, setLoading} from '../actions/authorities';
+import {setHygieneScores} from "../actions/hygieneScores";
 import HygieneScores from "./HygieneScores";
 import Loader from './Loader';
 
 export class DashboardPage extends React.Component {
-    state = {
-        hygieneScores: [],
-        loading: false
-    };
     componentDidMount() {
         axios.get("http://api.ratings.food.gov.uk/authorities/basic/", {
             headers: {'x-api-version': 2}
@@ -29,7 +26,7 @@ export class DashboardPage extends React.Component {
     }
     handleChange = (selectedAuthority) => {
         this.props.setSelectedAuthority(selectedAuthority.label);
-        this.setState({loading: true});
+        this.props.setLoading(true);
 
         const authorityId = selectedAuthority.value;
 
@@ -47,7 +44,10 @@ export class DashboardPage extends React.Component {
                 hygieneScores.push(establishment.RatingValue)
             });
 
-            this.setState({hygieneScores, loading: false})
+            this.props.setHygieneScores(hygieneScores);
+            this.props.setLoading(false);
+        }).catch((err) => {
+            console.log(err)
         })
     };
     render() {
@@ -58,25 +58,24 @@ export class DashboardPage extends React.Component {
                     options={this.props.authorities}
                     onChange={this.handleChange}
                 />
-                {this.state.loading &&
+                {this.props.loading &&
                     <Loader/>
                 }
-                <HygieneScores
-                    hygieneScores={this.state.hygieneScores}
-                    selectedAuthority={this.state.selectedAuthority}
-                    loading={this.state.loading}
-                />
+                <HygieneScores />
             </div>
         )
     }
 }
 const mapStateToProps = (state) => ({
-    authorities: state.authorities.allAuthorities
+    authorities: state.authorities.allAuthorities,
+    loading: state.authorities.loading
 });
 
 const mapDispatchToProps = (dispatch) => ({
     addAuthorities: (authorities) => dispatch(addAuthorities(authorities)),
-    setSelectedAuthority: (selectedAuthority) => dispatch(setSelectedAuthority(selectedAuthority))
+    setSelectedAuthority: (selectedAuthority) => dispatch(setSelectedAuthority(selectedAuthority)),
+    setHygieneScores: (hygieneScores) => dispatch(setHygieneScores(hygieneScores)),
+    setLoading: (loading) => dispatch(setLoading(loading))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)

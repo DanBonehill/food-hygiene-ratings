@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import HygieneScoresTable from "./HygieneScoresTable";
 
 // Move this somewhere else
@@ -72,4 +74,10 @@ const HygieneScores = ({hygieneScores, selectedAuthority, loading}) => {
     )
 };
 
-export default HygieneScores
+const mapStateToProps = (state) => ({
+    selectedAuthority: state.authorities.selectedAuthority,
+    loading: state.authorities.loading,
+    hygieneScores: state.hygieneScores
+});
+
+export default connect(mapStateToProps)(HygieneScores)
