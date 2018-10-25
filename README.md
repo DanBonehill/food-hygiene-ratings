@@ -2,7 +2,9 @@
 
 ### Commands
 Install dependencies: `yarn install`
+
 Build & run: `yarn run dev-server`
+
 Run tests: `yarn run test`
 
 ### Requirements
