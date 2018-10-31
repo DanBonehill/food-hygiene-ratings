@@ -1,4 +1,4 @@
-const defaultState = {
+export const defaultState = {
     allAuthorities: [],
     selectedAuthority: '',
     loading: false
