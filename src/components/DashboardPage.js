@@ -1,8 +1,8 @@
 import React from "react";
-import axios from 'axios';
 import {connect} from 'react-redux';
 import Select from 'react-select';
 
+import API from '../utils/API';
 import {addAuthorities, setSelectedAuthority, setLoading} from '../actions/authorities';
 import {setHygieneScores} from "../actions/hygieneScores";
 import HygieneScores from "./HygieneScores";
@@ -10,9 +10,7 @@ import Loader from './Loader';
 
 export class DashboardPage extends React.Component {
     componentDidMount() {
-        axios.get("http://api.ratings.food.gov.uk/authorities/basic/", {
-            headers: {'x-api-version': 2}
-        }).then((res) => {
+        API.getAuthorities().then((res) => {
             const authorities = [];
 
             res.data.authorities.forEach((authority) => {
@@ -30,14 +28,7 @@ export class DashboardPage extends React.Component {
 
         const authorityId = selectedAuthority.value;
 
-        axios.get("http://api.ratings.food.gov.uk/establishments", {
-            headers: {'x-api-version': 2},
-            params: {
-                "localAuthorityId": authorityId,
-                "pageNumber": 1,
-                "pageSize": 10000
-            }
-        }).then((res) => {
+        API.getEstablishments(authorityId).then((res) => {
             const hygieneScores = [];
 
             res.data.establishments.forEach((establishment) => {
